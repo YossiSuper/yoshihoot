@@ -49,7 +49,14 @@ func main() {
 	e.Static("/", "public")
 
 	e.GET("/", func(c echo.Context) error {
-		return c.File("views/index.html")
+		data := struct {
+			CountOfPlayers int
+			CountOfRooms   int
+		}{
+			CountOfPlayers: 20,
+			CountOfRooms:   2,
+		}
+		return c.Render(http.StatusOK, "index", data)
 	})
 
 	e.GET("/page1", func(c echo.Context) error {
