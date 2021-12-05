@@ -1,4 +1,4 @@
-module yoshihoot
+module yoshihoot_webserver
 
 go 1.17
 
