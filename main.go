@@ -1,11 +1,3 @@
-// ---------------------------------------------------------------------
-/*
-
-   server.go
-
-                       Jun/11/2018
-*/
-// ---------------------------------------------------------------------
 package main
 
 import (
@@ -20,23 +12,13 @@ import (
 	"github.com/labstack/echo"
 )
 
+//テンプレートエンジン用
 type Template struct {
 	templates *template.Template
 }
 
-// ---------------------------------------------------------------------
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	return t.templates.ExecuteTemplate(w, name, data)
-}
-
-// ---------------------------------------------------------------------
-// サイトで共通情報
-type ServiceInfo struct {
-	Title string
-}
-
-var serviceInfo = ServiceInfo{
-	"サイトのタイトル",
 }
 
 // SQLConnect DB接続
@@ -51,6 +33,7 @@ func sqlConnect() (database *gorm.DB, err error) {
 	return gorm.Open(DBMS, CONNECT)
 }
 
+//UUID生成用関数
 func GenerateUUID() string {
 	u, err := uuid.NewRandom()
 	if err != nil {
@@ -60,8 +43,10 @@ func GenerateUUID() string {
 	return u.String()
 }
 
-// ---------------------------------------------------------------------
+//メイン
 func main() {
+
+	//MySQL接続
 	_, err := sqlConnect()
 
 	if err != nil {
@@ -70,18 +55,19 @@ func main() {
 		fmt.Println("DB接続成功")
 	}
 
+	//テンプレートエンジン設定
 	t := &Template{
 		templates: template.Must(template.ParseGlob("views/*.html")),
 	}
 
-	fmt.Println(GenerateUUID())
-
+	//サーバーインスタンス作成
 	e := echo.New()
 
+	//サーバーの設定
 	e.Renderer = t
-
 	e.Static("/", "public")
 
+	//トップページ
 	e.GET("/", func(c echo.Context) error {
 		data := struct {
 			CountOfPlayers int
@@ -95,25 +81,7 @@ func main() {
 		return c.Render(http.StatusOK, "index", data)
 	})
 
-	e.GET("/page1", func(c echo.Context) error {
-		// テンプレートに渡す値
-
-		data := struct {
-			ServiceInfo
-			Content_a string
-			Content_b string
-			Content_c string
-			Content_d string
-		}{
-			ServiceInfo: serviceInfo,
-			Content_a:   "雨が降っています。",
-			Content_b:   "明日も雨でしょうか。",
-			Content_c:   "台風が近づいています。",
-			Content_d:   "Jun/11/2018",
-		}
-		return c.Render(http.StatusOK, "page1", data)
-	})
-
+	//サーバー開始
 	e.Logger.Fatal(e.Start(":80"))
 }
 
