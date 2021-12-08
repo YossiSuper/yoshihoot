@@ -7,9 +7,10 @@ import (
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/google/uuid"
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
+
+	"yoshihoot_WebServer/uuid"
 )
 
 //テンプレートエンジン用
@@ -33,18 +34,10 @@ func sqlConnect() (database *gorm.DB, err error) {
 	return gorm.Open(DBMS, CONNECT)
 }
 
-//UUID生成用関数
-func GenerateUUID() string {
-	u, err := uuid.NewRandom()
-	if err != nil {
-		fmt.Println(err)
-		return err.Error()
-	}
-	return u.String()
-}
-
 //メイン
 func main() {
+
+	fmt.Println(uuid.GenerateUUID())
 
 	//MySQL接続
 	_, err := sqlConnect()
@@ -76,7 +69,7 @@ func main() {
 		}{
 			CountOfPlayers: 20,
 			CountOfRooms:   2,
-			UserID:         GenerateUUID(),
+			UserID:         "4",
 		}
 		return c.Render(http.StatusOK, "index", data)
 	})
