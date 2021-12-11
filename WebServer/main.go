@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 
+	"yoshihoot_WebServer/router"
 	"yoshihoot_WebServer/uuid"
 )
 
@@ -43,7 +43,7 @@ func main() {
 	_, err := sqlConnect()
 
 	if err != nil {
-		panic(err.Error())
+		fmt.Println("DBに接続できませんでした。")
 	} else {
 		fmt.Println("DB接続成功")
 	}
@@ -58,21 +58,7 @@ func main() {
 
 	//サーバーの設定
 	e.Renderer = t
-	e.Static("/", "public")
-
-	//トップページ
-	e.GET("/", func(c echo.Context) error {
-		data := struct {
-			CountOfPlayers int
-			CountOfRooms   int
-			UserID         string
-		}{
-			CountOfPlayers: 20,
-			CountOfRooms:   2,
-			UserID:         "4",
-		}
-		return c.Render(http.StatusOK, "index", data)
-	})
+	router.SetRouter(e)
 
 	//サーバー開始
 	e.Logger.Fatal(e.Start(":80"))
