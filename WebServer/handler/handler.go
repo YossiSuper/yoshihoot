@@ -19,3 +19,24 @@ func TopPage(c echo.Context) error {
 	}
 	return c.Render(http.StatusOK, "index", data)
 }
+
+func CreateGame(c echo.Context) error {
+	return c.JSON(http.StatusOK, "")
+}
+
+func JoinGame(c echo.Context) error {
+	return c.JSON(http.StatusOK, "")
+}
+
+func DeleteGame(c echo.Context) error {
+	return c.JSON(http.StatusOK, "")
+}
+
+func GetGames(c echo.Context) error {
+	return c.JSON(http.StatusOK, "")
+}
+
+func LogIn(c echo.Context) error {
+
+	return c.JSON(http.StatusOK, "")
+}
