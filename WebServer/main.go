@@ -5,10 +5,9 @@ import (
 	"html/template"
 	"io"
 
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 
+	"yoshihoot_WebServer/db"
 	"yoshihoot_WebServer/router"
 	"yoshihoot_WebServer/uuid"
 )
@@ -22,26 +21,13 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-// SQLConnect DB接続
-func sqlConnect() (database *gorm.DB, err error) {
-	DBMS := "mysql"
-	USER := "root"
-	PASS := ""
-	PROTOCOL := "tcp(localhost:3306)"
-	DBNAME := "yoshihoot"
-
-	CONNECT := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
-	return gorm.Open(DBMS, CONNECT)
-}
-
 //メイン
 func main() {
 
 	fmt.Println(uuid.GenerateUUID())
 
 	//MySQL接続
-	_, err := sqlConnect()
-
+	_, err := db.SqlConnect()
 	if err != nil {
 		fmt.Println("DBに接続できませんでした。")
 	} else {
