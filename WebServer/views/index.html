@@ -5,16 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>よしふーーと!</title>
 </head>
 <body>
-    <h1>よしふーーと！</h1>
+    <h1>よしふーーと!</h1>
     <div>
         <ul>
-            <li>{{.CountOfPlayers}}</li>
-            <li>{{.CountOfRooms}}</li>
-            <li>{{.UserID}}</li>
+            <li>現在のプレイヤー:{{.CountOfPlayers}}</li>
+            <li>現在のアクティブゲーム{{.CountOfRooms}}</li>
         </ul>
+    </div>
+    <div>
+        <h2>詳細</h2>
+        <p>golangで作成された早押しクイズゲームです。これは勉強目的で作成されています。</p>
     </div>
 </body>
 </html>
