@@ -1,15 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io"
 
 	"github.com/labstack/echo"
 
-	"yoshihoot_WebServer/db"
 	"yoshihoot_WebServer/router"
-	"yoshihoot_WebServer/uuid"
 )
 
 //テンプレートエンジン用
@@ -23,17 +20,6 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 
 //メイン
 func main() {
-
-	fmt.Println(uuid.GenerateUUID())
-
-	//MySQL接続
-	_, err := db.SqlConnect()
-	if err != nil {
-		fmt.Println("DBに接続できませんでした。")
-	} else {
-		fmt.Println("DB接続成功")
-	}
-
 	//テンプレートエンジン設定
 	t := &Template{
 		templates: template.Must(template.ParseGlob("views/*.html")),
@@ -49,5 +35,3 @@ func main() {
 	//サーバー開始
 	e.Logger.Fatal(e.Start(":80"))
 }
-
-// ---------------------------------------------------------------------
