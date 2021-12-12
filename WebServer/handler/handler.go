@@ -3,6 +3,8 @@ package handler
 import (
 	"net/http"
 
+	"yoshihoot_WebServer/api"
+
 	"github.com/labstack/echo"
 )
 
@@ -37,6 +39,5 @@ func GetGames(c echo.Context) error {
 }
 
 func LogIn(c echo.Context) error {
-
-	return c.JSON(http.StatusOK, "")
+	return c.JSON(http.StatusOK, api.LogIn(c.QueryParam("name")))
 }
