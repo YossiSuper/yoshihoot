@@ -13,11 +13,9 @@ func TopPage(c echo.Context) error {
 	data := struct {
 		CountOfPlayers int
 		CountOfRooms   int
-		UserID         string
 	}{
 		CountOfPlayers: 20,
 		CountOfRooms:   2,
-		UserID:         "4",
 	}
 	return c.Render(http.StatusOK, "index", data)
 }
@@ -35,6 +33,10 @@ func DeleteGame(c echo.Context) error {
 }
 
 func GetGames(c echo.Context) error {
+	return c.JSON(http.StatusOK, "")
+}
+
+func GetServerStatus(c echo.Context) error {
 	return c.JSON(http.StatusOK, "")
 }
 

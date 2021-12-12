@@ -17,4 +17,5 @@ func SetRouter(e *echo.Echo) {
 	api.GET("/JoinGame", handler.JoinGame)
 	api.GET("/DeleteGame", handler.DeleteGame)
 	api.GET("/GetGames", handler.GetGames)
+	api.GET("/GetServerStatus", handler.GetServerStatus)
 }
