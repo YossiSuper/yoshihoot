@@ -2,9 +2,10 @@ module yoshihoot_WebServer
 
 go 1.17
 
+require github.com/google/uuid v1.3.0
+
 require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
-	github.com/google/uuid v1.3.0
 	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/labstack/echo v3.3.10+incompatible // indirect
@@ -17,4 +18,5 @@ require (
 	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect
 	golang.org/x/sys v0.0.0-20211103235746-7861aae1554b // indirect
 	golang.org/x/text v0.3.0 // indirect
+	gopkg.in/ini.v1 v1.66.2 // indirect
 )
