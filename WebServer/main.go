@@ -33,5 +33,5 @@ func main() {
 	router.SetRouter(e)
 
 	//サーバー開始
-	e.Logger.Fatal(e.Start(":80"))
+	e.Logger.Fatal(e.Start(":3000"))
 }

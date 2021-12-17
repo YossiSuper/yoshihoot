@@ -5,6 +5,12 @@ type User struct {
 	Name string
 }
 
+type DBUser struct {
+	UUID   string
+	Name   string
+	Status string
+}
+
 type UserAPI struct {
 	User   User
 	Status APIStatus
