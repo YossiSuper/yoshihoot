@@ -6,6 +6,7 @@ import (
 	"github.com/labstack/echo"
 )
 
+//ルーターとハンドラーのバインドをします。
 func SetRouter(e *echo.Echo) {
 	e.Static("/public", "public")
 
@@ -18,4 +19,5 @@ func SetRouter(e *echo.Echo) {
 	api.GET("/DeleteGame", handler.DeleteGame)
 	api.GET("/GetGames", handler.GetGames)
 	api.GET("/GetServerStatus", handler.GetServerStatus)
+	api.GET("/GetUserInfo", handler.GetUserInfo)
 }

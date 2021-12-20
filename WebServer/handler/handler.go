@@ -1,8 +1,8 @@
+//リクエストの前処理をして、apiパッケージに送ります。
 package handler
 
 import (
 	"net/http"
-
 	"yoshihoot_WebServer/api"
 
 	"github.com/labstack/echo"
@@ -40,6 +40,12 @@ func GetServerStatus(c echo.Context) error {
 	return c.JSON(http.StatusOK, "")
 }
 
+//ログインAPI
 func LogIn(c echo.Context) error {
 	return c.JSON(http.StatusOK, api.LogIn(c.QueryParam("name")))
+}
+
+//ユーザー情報取得API
+func GetUserInfo(c echo.Context) error {
+	return c.JSON(http.StatusOK, api.GetUserInfo(c.QueryParam("uuid")))
 }

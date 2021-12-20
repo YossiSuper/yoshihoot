@@ -12,7 +12,7 @@ type DBUser struct {
 }
 
 type UserAPI struct {
-	User   User
+	User   DBUser
 	Status APIStatus
 }
 
@@ -25,4 +25,21 @@ type Room struct {
 	UUID string
 	Name string
 	Quiz string
+}
+
+type DBRoom struct {
+	Count int
+	Room  []Room
+}
+
+type Questionnaire struct {
+	Question            string
+	QuestionnaireAnswer []string
+	Owner               string
+}
+
+type QuestionnaireAnswer struct {
+	Index  int
+	Answer string
+	Count  int
 }
