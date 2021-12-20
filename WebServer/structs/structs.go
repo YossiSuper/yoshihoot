@@ -33,9 +33,10 @@ type DBRoom struct {
 }
 
 type Questionnaire struct {
-	Question            string
-	QuestionnaireAnswer []string
-	Owner               string
+	Question string
+	Asnwer   string
+	Owner    string
+	UUID     string
 }
 
 type QuestionnaireAnswer struct {
